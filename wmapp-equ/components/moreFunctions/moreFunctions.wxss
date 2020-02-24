@@ -1,0 +1,411 @@
+@import "../../app.wxss";
+
+image {
+  width: 100%;
+  height: 100%;
+}
+
+.to-icon-all {
+  position: fixed;
+  top: 24%;
+  height: 76%;
+  width: 74rpx;
+  right: 26rpx;
+  z-index: 9;
+}
+
+.to-icon-person {
+  position: fixed;
+  width: 74rpx;
+  right: 26rpx;
+  height: 74rpx;
+  border-radius: 50%;
+  text-align: center;
+  z-index: 10;
+}
+
+.to-icon {
+  position: absolute;
+  width: 100%;
+  right: 0;
+  height: 74rpx;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.to-icon text {
+  color: #00c481;
+  width: 100%;
+  font-weight: 600;
+  font-family: Yuanti SC;
+  position: absolute;
+  bottom: -34rpx;
+  left: 0;
+  font-size: 30rpx;
+}
+
+.to-icon.to-home text, .to-icon.to-share text {
+  font-size: 22rpx;
+  bottom: -24rpx;
+}
+
+.to-icon.to-home text {
+  bottom: -28rpx;
+}
+
+.to-set {
+  position: fixed;
+  bottom: 144rpx;
+}
+
+.to-home {
+  bottom: 768rpx;
+}
+
+.to-zan {
+  bottom: 636rpx;
+}
+
+.to-zan image {
+  animation-duration: 0.4s;
+}
+
+.to-cai {
+  bottom: 514rpx;
+}
+
+.to-reply {
+  bottom: 390rpx;
+}
+
+.to-share {
+  bottom: 266rpx;
+}
+
+.to-post {
+  bottom: 10%;
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.to-praise {
+  right: 44rpx;
+  bottom: 9%;
+}
+
+.share button:after, .share button:before {
+  display: none;
+}
+
+/*返回顶部*/
+
+.scroll-to-top {
+  z-index: 9;
+  position: fixed;
+  right: 50rpx;
+  bottom: 150rpx;
+  width: 90rpx;
+  height: 90rpx;
+  background-color: #00c481;
+  border-radius: 50%;
+  opacity: 0.65;
+}
+
+.scroll-to-top-img {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+/*end返回顶部*/
+
+.share-box {
+  position: fixed;
+  background-color: #fff;
+  left: 0;
+  right: 0;
+  bottom: -400rpx;
+  /* border-radius: 10rpx; */
+  z-index: 121;
+  transition: all 0.3s ease-out;
+}
+
+.share-box .title {
+  text-align: center;
+  color: #575a5c;
+  /* line-height: 46rpx; */
+  padding: 27rpx 0;
+}
+
+.share-box.active {
+  bottom: 0;
+}
+
+.tag-share {
+  width: 154rpx;
+  height: 122rpx;
+  position: absolute;
+  top: -20rpx;
+  left: -40rpx;
+}
+
+.share-item-wrap {
+  display: flex;
+  margin: 0 60rpx;
+}
+
+.share-item-wrap .share-item {
+  bottom: 37%;
+  flex: 1;
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 1.8;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.share-quan {
+  left: 90rpx;
+  animation-duration: 0.3s;
+  animation-delay: 0.1s;
+}
+
+.share-wx {
+  animation-duration: 0.3s;
+  animation-delay: 0.2s;
+}
+
+.share-page {
+  right: 90rpx;
+  animation-duration: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.share-item:before, .share-item:after {
+  display: none;
+}
+
+.share-item image {
+  width: 88rpx;
+}
+
+.btn-text {
+  text-align: center;
+  color: #4cb68f;
+  font-size: 30rpx;
+  line-height: 88rpx;
+  box-shadow: 0 -4rpx 10rpx rgba(0, 0, 0, 0.05);
+  margin-top: 26rpx;
+}
+
+.canvas-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30rpx 100rpx;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.canvas-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.btn-save {
+  width: 100%;
+  text-align: center;
+  padding: 10rpx 0;
+  background-color: #4db68f;
+  color: #fff;
+  height: 64rpx;
+  margin: 0rpx 30rpx 8rpx;
+  box-sizing: border-box;
+}
+
+.btn-close {
+  color: #11b9ba;
+  padding: 10rpx 50rpx 20rpx;
+}
+
+.share-closed {
+  position: absolute;
+  bottom: 130rpx;
+  right: 16rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.share-closed image {
+  width: 100%;
+  height: 100%;
+}
+
+.mask-canvas {
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 120;
+}
+
+.hide {
+  display: none;
+}
+
+.sharetail {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background: #fff;
+}
+
+.sharetail .share-item {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  box-sizing: border-box;
+  line-height: 0;
+  width: 164rpx;
+  color: #676767;
+  text-align: left;
+}
+
+.sharetail .share-item:first-child {
+  width: 114rpx;
+}
+
+.sharetail .share-item:first-child image {
+  height: 104rpx;
+}
+
+/*评论列表*/
+
+.show-reply {
+  background: rgba(255, 255, 255, 1);
+  position: fixed;
+  z-index: 12;
+  left: 0;
+  width: 100%;
+  border-top-right-radius: 10rpx;
+  border-top-left-radius: 10rpx;
+  transition: all 0.3s;
+  box-shadow: 2rpx -2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+.show-reply1 {
+  bottom: -300rpx;
+}
+
+.show-reply2 {
+  bottom: -500rpx;
+}
+
+.show-reply3 {
+  bottom: -800rpx;
+}
+
+.show-reply4 {
+  bottom: -1000rpx;
+}
+
+.show-reply.active {
+  bottom: 112rpx;
+}
+
+.show-reply .title {
+  font-size: 22rpx;
+  text-align: center;
+  margin: 18rpx 0 12rpx;
+  position: relative;
+}
+
+.show-reply .title .close {
+  position: absolute;
+  top: 0;
+  right: 28rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.close image {
+  width: 68%;
+  height: 68%;
+}
+
+.show-reply .title .cover-close {
+  position: absolute;
+  z-index: 13;
+  top: -18rpx;
+  right: 0;
+  width: 30%;
+  height: 200%;
+}
+
+.more-function {
+  display: flex;
+  align-items: center;
+}
+
+.item-function {
+  position: relative;
+  width: 100rpx;
+}
+
+.ext-No {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  font-size: 18rpx;
+  color: #bfbfbf;
+}
+
+.item-function.active .ext-No {
+  color: #c83028;
+}
+
+.article-text .textbox-wrap {
+  box-shadow: rgb(170, 170, 170) 0em 0em 1em 0px;
+  border-radius: 6px;
+  margin: 15rpx 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.zan-loadmore {
+  margin: 24rpx auto 56rpx;
+}
+
+.width-atuo {
+  width: 100%;
+  line-height: 0;
+}
+
+.tb-text {
+  padding: 15rpx 30rpx;
+  background: rgb(0, 0, 0) !important;
+  color: #fafafa;
+  font-size: 24rpx;
+  display: none;
+}
+
+.article {
+  animation-delay: 0.2s;
+  animation-iteration-count: 2;
+}
+
+.done-have-copy .share-quan {
+  left: 160rpx;
+}
+
+.done-have-copy .share-wx {
+  left: auto;
+  right: 160rpx;
+}

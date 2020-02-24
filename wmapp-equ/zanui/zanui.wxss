@@ -1,0 +1,61 @@
+.zan-loadmore {
+  position: relative;
+  margin: 12rpx auto 10rpx;
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  padding-bottom: 10rpx;
+}
+
+
+
+.zan-loadmore .zan-loading {
+  margin-right: 4px;
+}
+
+.zan-loadmore__tips {
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px;
+  line-height: 20px;
+}
+
+.zan-loadmore--nodata, .zan-loadmore--nomore {
+  color: #999;
+}
+
+.zan-loadmore--nodata::after, .zan-loadmore--nomore::after {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 0 solid #e5e5e5;
+  border-top-width: 1px;
+}
+
+.zan-loadmore--nodata {
+  margin-top: 120px;
+}
+
+.zan-loadmore--nodata .zan-loadmore__tips {
+  position: relative;
+  top: -11px;
+  background: #f9f9f9;
+  padding: 0 6px;
+  z-index: 1;
+}
+
+.zan-loadmore--nomore .zan-loadmore__tips {
+  position: relative;
+  /* top: 0; */
+  background: #f9f9f9;
+  padding: 0 6px;
+  z-index: 1;
+}

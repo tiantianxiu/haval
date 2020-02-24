@@ -1,0 +1,247 @@
+.user-info {
+  display: flex;
+  margin: 0 0 20rpx;
+  position: relative;
+}
+
+.user-info .author {
+  line-height: 20rpx;
+  height: 36rpx;
+  padding-top: 6rpx;
+  font-size: 30rpx;
+  /* overflow: hidden; */
+  /*white-space: nowrap; /*不换行*/
+ /* text-overflow: ellipsis; /*超出部分文字以...显示*/
+}
+
+.level {
+  display: flex;
+  font-size: 26rpx;
+}
+
+.time {
+  flex: 1;
+  text-align: right;
+  color: #bad8d8;
+  line-height: 70rpx;
+  font-size: 28rpx;
+}
+
+.price {
+  flex: 1;
+  text-align: right;
+  color: #ed5151;
+  font-weight: 600;
+  font-size: 32rpx;
+}
+
+.time image {
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.level>view {
+  border: 2rpx solid #11b9ba;
+  color: #11b9ba;
+  line-height: 32rpx;
+  height: 30rpx;
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+  padding: 0 4rpx;
+}
+
+.level>view image {
+  height: 24rpx;
+  width: 24rpx;
+  vertical-align: middle;
+  margin-bottom: 4rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  position: relative;
+  padding-right: 24rpx;
+}
+
+.avatar.big-avatar {
+  width: 116rpx;
+  height: 116rpx;
+  position: relative;
+  padding-right: 20rpx;
+  margin-top: -60rpx;
+}
+
+.avatar.big-avatar .img {
+  border: 8rpx solid #fff;
+}
+
+.avatar.big-avatar .user-v {
+  width: 30rpx;
+  height: 30rpx;
+  bottom: -8rpx;
+  left: 90rpx;
+}
+
+.avatar.big-avatar.no-cover .img {
+  border: none;
+}
+
+.avatar.big-avatar.no-cover {
+  margin-top: -20rpx;
+}
+
+.avatar .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.avatar .doyen {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  bottom: -4rpx;
+  right: 20rpx;
+}
+
+/* 添加好友按钮 */
+
+.add-friend {
+  position: absolute;
+  top: 26rpx;
+  right: 0;
+  border-radius: 30rpx;
+  background-color: #ddf1f2;
+  padding: 2rpx 10rpx;
+  color: #444cf0;
+}
+
+.add-friend image {
+  width: 24rpx;
+  height: 24rpx;
+  vertical-align: middle;
+  margin: 0 0 6rpx 2rpx;
+}
+
+/* 广场三点 */
+
+.hidden-text {
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* width: auto; */
+  height: 80rpx;
+  width: 100px;
+  line-height: 34rpx;
+  text-align: right;
+}
+
+.hidden-text .text1 {
+  color: #434cef;
+  display: inline-block;
+  padding: 0 8rpx 0 26rpx;
+  border-radius: 30rpx;
+  background-color: #ddf1f2;
+  font-size: 22rpx;
+  font-weight: 600;
+  position: relative;
+  line-height: 36rpx;
+}
+
+.hidden-text .text1::after {
+  content: ' ';
+  position: absolute;
+  height: 10rpx;
+  width: 10rpx;
+  background: #11b9ba;
+  border-radius: 50%;
+  left: 10rpx;
+  top: 12rpx;
+}
+
+.hidden-text image {
+  width: 34rpx;
+  height: 34rpx;
+}
+
+.zan-cai {
+  position: absolute;
+  right: 0;
+  top: 2rpx;
+  display: flex;
+  color: #bad8d8;
+}
+
+.zan-cai > view {
+  width: 36rpx;
+  text-align: center;
+  margin-left: 54rpx;
+  line-height: 28rpx;
+}
+
+.zan-cai image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.user-v {
+  position: absolute;
+  bottom: 0rpx;
+  right: 26rpx;
+  width: 26rpx;
+  height: 26rpx;
+  background: url(https://e-power.oss-cn-shenzhen.aliyuncs.com/new_resources/image/common/vip.png) center center no-repeat;
+  background-size: 100% 100%;
+}
+
+.user-detail {
+  /* max-width: 43%; */
+  overflow: hidden;
+}
+
+.big-avatar .user-detail {
+  width: auto;
+}
+
+.dia-message {
+  font-size: 28rpx;
+  color: #696c7d;
+  margin-top: 8rpx;
+  overflow: hidden;
+  white-space: nowrap; /*不换行*/
+  text-overflow: ellipsis; /*超出部分文字以...显示*/
+  max-width: 55vw;
+}
+.tag{
+  background: #bad8d8;
+  border-radius: 40rpx;
+  padding: 0 14rpx;
+  height: 44rpx;
+  line-height: 42rpx;
+  color: #434cef;
+  font-size: 26rpx;
+  vertical-align: middle;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+
+.tag text{
+  width: 10rpx;
+  height: 10rpx;
+  background: #11b9ba;
+  border-radius: 10rpx;
+  display: inline-block;
+  margin-right: 6rpx;
+}
+.ques-time{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #bad8d8;
+  font-size: 22rpx;
+}

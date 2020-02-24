@@ -1,0 +1,64 @@
+<block wx:if="{{carModelShow}}">
+	<import src="../../zanui/loadmore/index.wxml" />
+	<loading hidden="{{loading_hidden}}">
+	{{loading_msg}}
+	</loading>
+
+	<view class="mask" bindtap="hideFixedTab"></view>
+	<view class="fixed-box" wx:if="{{level == 1}}" style="top:{{heightMt}}px">
+		<view class="section-wrap">
+			<view class="section-title"><view class="title">选择品牌</view></view>
+			<scroll-view scroll-y scroll-into-view="{{scrollToId}}" style="height: {{windowHeight}}px;" scroll-top="{{fixedTabScrollTop}}">
+				<view>
+					<view class="section-body section-box-list" wx:for="{{brandList}}" wx:key="" wx:for-item="bList" wx:for-index="idx" id="{{idx == '燃' ? 'ran' : idx}}">
+						<view class="title">{{idx}}</view>
+						<view class="content-list" wx:for="{{bList}}" wx:key="" wx:for-item="bListItem" data-id="{{bListItem.id}}" data-name="{{bListItem.name}}" data-icon="{{bListItem.icon}}" bindtap="selectCarSystem">
+							<view class="img"style="background-image: url({{bListItem.icon}});"></view>
+							<view class="text">{{bListItem.name}}</view>
+						</view>		
+					</view>
+				</view>
+
+			</scroll-view>
+		</view>
+
+		<view class="fixed-letter" bindtouchstart="handlerStart" catchtouchmove="handlerMove" style="top:{{heightMt}}px">
+			<view class="letter" data-idx="{{idx == '燃' ? 'ran' : idx}}" wx:for="{{brandList}}" wx:key="" wx:for-item="bList" wx:for-index="idx" >{{idx}}</view>
+		</view>
+	</view>
+
+	<view class="fixed-box" wx:elif="{{level == 2}}" style="top:{{heightMt}}px">
+		<view class="section-wrap">
+			<view class="section-title" bindtap="goback">
+				<view class="goback"><image src="http://cdn.e-power.vip/new_resources/image/common/down.png"/><view class="title">选择车系</view></view>
+			</view>
+
+			<scroll-view scroll-y enable-back-to-top="true" scroll-with-animation="true" style="height: {{windowHeight}}px;">
+				<view class="section-body section-box-list">
+					<view class="title">{{carBrandName}}</view>
+					<view class="content-list content-list-car" wx:for="{{systemList}}" wx:key="" wx:for-item="carSystem" data-id="{{carSystem.id}}" data-type_category="{{carSystem.type_category}}" data-name="{{carSystem.name}}" bindtap="selectCarModel" data-icon="{{carSystem.icon}}">
+						<view class="img" style="background-image: url({{carSystem.icon}});"></view>
+						<view class="text">{{carSystem.name}}</view>
+					</view>		
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+
+	<view class="fixed-box" wx:else style="top:{{heightMt}}px">
+		<view class="section-wrap">
+
+			<view class="section-title" bindtap="goback">
+				<view class="goback"><image  src="http://cdn.e-power.vip/new_resources/image/common/down.png"/><view class="title">选择车型</view></view>
+			</view>
+			<scroll-view scroll-y enable-back-to-top="true" scroll-with-animation="true" style="height: {{windowHeight}}px;">
+				<view class="section-body section-box-list">
+					<view class="title">{{carModelName}}</view>
+					<view class="content-list content-list-col" wx:for="{{ModelList}}" wx:key="" wx:for-item="carModel" data-name="{{carModel.name}}" bindtap="saveCarModel" data-id="{{carModel.id}}">
+						<view class="text">{{carModel.name}}</view>
+					</view>		
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+</block>

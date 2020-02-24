@@ -1,0 +1,338 @@
+<import src="../../zanui/loadmore/index.wxml" />
+
+<!--user.wxml-->
+<navBar navbar-data="{{navbarData}}"></navBar>
+
+
+<loading hidden="{{loading_hidden}}">
+  {{loading_msg}}
+</loading>
+<authorization showAuthorization="{{showAuthorization}}"></authorization>
+
+<view class="page-body-user">
+  <view class="detail-cover" bindtap="coverTap">
+    <image src="{{thread_data.cover_image}}" mode="aspectFill" wx:if="{{thread_data.cover_image}}"></image>
+    <text>更换背景</text>
+  </view>
+  <view class="thread_content-cell" id="thread-content-cell">
+    <view class="big">
+      <view class="user-info">
+        <view class="avatar" bindtap="selfLink" data-item="editInfo">
+          <image class="img" src="{{thread_data.avatar}}"></image>
+          <view class="user-v" wx:if="{{thread_data.is_ident_icon == 1}}"></view>
+        </view>
+        <view class="set-li">
+          <view class="li" bindtap="adminTap" wx:if="{{thread_data.super_admin == 1}}">
+            <image src="../../resources/image/user/admin_icon.png"></image>
+          </view>
+          <view class="li" bindtap="selfLink" data-item="editInfo">
+            <image src="https://cdn.e-power.vip/new_resources/image/common/set_icon.png"></image>
+            编辑资料
+          </view>
+          <view class="li" bindtap="toFriends" data-type="3">
+            <image src="https://cdn.e-power.vip/new_resources/image/common/select_icon.png"></image>
+          </view>
+        </view>
+      </view>
+
+      <view class="user-data">
+        <view class="name">{{thread_data.username}}</view>
+        <view class="level">
+          <view class="level-car">
+            <image src="https://cdn.e-power.vip/new_resources/image/common/car_vip.png" wx:if="{{thread_data.is_carvip == 1}}"></image>
+            {{thread_data.level}}
+          </view>
+          <view class="level-car" wx:if="{{thread_data.position}}">
+            {{thread_data.position}}
+          </view>
+          <view class="level-electric">
+            <image src="https://cdn.e-power.vip/new_resources/image/common/lightning.png"></image>
+            {{thread_data.extcredits2}}</view>
+        </view>
+        <view class="describe">
+          {{thread_data.bio}}
+        </view>
+
+        <view class="set-li">
+          <view class="li" bindtap="selfLink" data-item="editInfo">
+            <image src="https://cdn.e-power.vip/new_resources/image/common/female.png" wx:if="{{thread_data.gender == '女'}}"></image>
+            <image src="https://cdn.e-power.vip/new_resources/image/common/male.png" wx:if="{{thread_data.gender == '男'}}"></image>
+            <text>{{thread_data.gender}}</text>
+          </view>
+          <view class="li" bindtap="selfLink" data-item="editInfo" wx:if="{{thread_data.residecity}}">
+            <text>{{thread_data.residecity}}</text>
+          </view>
+          <view class="li" bindtap="selfLink" data-item="editInfo">
+            +增加标签
+          </view>
+        </view>
+        <view class="btn" bindtap="operationTap">认证</view>
+        <view class="zans">
+          <view class="li">
+            获赞
+            <text>{{thread_data.zan}}</text>
+          </view>
+          <view class="li">
+            被踩
+            <text>{{thread_data.cai}}</text>
+          </view>
+          <view class="li" bindtap="toFriend" data-type="1">
+            关注
+            <text>{{thread_data.following}}</text>
+          </view>
+          <view class="li" bindtap="toFriend" data-type="2">
+            粉丝
+            <text>{{thread_data.follower}}</text>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+
+  <view class="my-content">
+    <view class="my-nav">
+      <view class="li {{type==0? 'active' : ''}}" bindtap="navTap" data-type="0">帖子</view>
+      <view class="li {{type==3? 'active' : ''}}" bindtap="navTap" data-type="3">广场</view>
+      <view class="li {{type==2 && special==0 ? 'active' : ''}}" bindtap="navTap" data-type="2" data-special="0">问答</view>
+      <view class="li {{type==2 && special==1 ? 'active' : ''}}" bindtap="navTap" data-type="2" data-special="1">投票</view>
+      <!-- <view class="li {{type==1? 'active' : ''}}" bindtap="navTap" >口碑</view> -->
+      <view class="li {{type==100? 'active' : ''}}" bindtap="navTap" data-type="100">更多</view>
+    </view>
+
+    <view class="my-square" wx:if="{{type == 0}}">
+      <block wx:for="{{my_thread_data}}" wx:for-item="item" wx:key="index">
+        <view class="user-year">{{item.time.year}}</view>
+        <view class="li" bindtap="toDetail" data-id="{{item.tid}}">
+          <view class="user-left">
+            {{item.time.date}}
+            <text wx:if="{{item.time.month}}">{{item.time.month}}</text>
+          </view>
+          <view class="post-content">
+            <view class="square-message post-message">
+              {{item.subject}}
+            </view>
+            <view class="square-image" wx:if='{{item.image_list[0]}}'>
+              <image src="{{item.image_list[0]}}" mode="aspectFill">
+                <text wx:if="{{item.image_list.length > 1}}">{{item.image_list.length}}
+              </text>
+              </image>
+            </view>
+            <view class="square-message quest-message" wx:else>{{item.message}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="my-square" wx:if="{{type == 3}}">
+      <block wx:for="{{my_thread_data}}" wx:for-item="item" wx:key="index">
+        <view class="user-year">{{item.time.year}}</view>
+        <view class="li" bindtap="toSquare" data-id="{{item.tid}}">
+          <view class="user-left">
+            {{item.time.date}}
+            <text wx:if="{{item.time.month}}">{{item.time.month}}</text>
+          </view>
+          <view class="square-image" wx:if='{{item.image_list[0]}}'>
+            <image src="{{item.image_list[0]}}" mode="aspectFill">
+              <text wx:if="{{item.image_list.length > 1}}">{{item.image_list.length}}
+              </text>
+            </image>
+          </view>
+          <view class="square-message {{!item.image_list[0] ? 'noimage' : ''}}">
+            {{item.message}}
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="my-square my-quest" wx:if="{{type == 2 && special == 0}}">
+      <block wx:for="{{my_thread_data}}" wx:for-item="item" wx:key="index">
+        <view class="user-year">{{item.time.year}}</view>
+        <view class="li" bindtap="toQuest" data-id="{{item.tid}}">
+          <view class="user-left">
+            {{item.time.date}}
+            <text wx:if="{{item.time.month}}">{{item.time.month}}</text>
+          </view>
+          <view class="user-right">
+            <view class="square-message quest-message">
+              {{item.message}}
+            </view>
+            <view class="quest-image" wx:if='{{item.image_list[0]}}'>
+              <image src="{{image}}" wx:for="{{item.image_list}}" wx:for-item="image" mode="aspectFill" wx:for-index="idx" wx:key="idx" wx:if="{{idx<3}}">
+              </image>
+            </view>
+            <view class="footers">
+              <view class="view-reply">
+                <view class="views">
+                  <image src="https://cdn.e-power.vip/new_resources/image/common/views.png"></image>
+                  <text>{{item.views}}</text>
+                </view>
+                <view class="replies">
+                  <image src="https://cdn.e-power.vip/new_resources/image/common/replies.png"></image>
+                  <text>{{item.replies}}</text>
+                </view>
+                <view class='price' wx:if="{{item.price != 0}}">打赏金额：￥{{item.price}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="my-square square-list" wx:if="{{type == 2 && special == 1}}">
+      <block wx:for="{{my_thread_data}}" wx:for-item="item" wx:key="index">
+        <view class="container-list" bindtap="toVote" data-id="{{item.tid}}">
+
+          <view class="">
+            <view class="quest-image" wx:if='{{item.image_list[0]}}'>
+              <image src="{{image}}" wx:for="{{item.image_list}}" wx:for-item="image" mode="aspectFill" wx:for-index="idx" wx:key="idx" >
+                <text wx:if="{{idx == 2 && item.image_list_count > 3}}">{{item.image_list_count}}</text>
+              </image>
+            </view>
+            <view class="message">
+              <view class='class-name' hover-stop-propagation='true' catchtap='picTap' data-fid="{{item.fid}}" wx:if="{{item.class_name}}" data-typeid="{{item.typeid}}" data-class_name="{{item.class_name}}">{{item.class_name}}</view>
+              <rich-text nodes="{{item.mes_mores || item.mes_more || item.message}}"></rich-text>
+              <view class="more" wx:if="{{!item.mes_mores && item.mes_more}}"></view>
+            </view>
+            <view class="vote-list" wx:if="{{item.special == 1}}">
+              <view class="title">投票选项</view>
+              <!-- <view class="count-down" wx:if="{{item.vote.poll.is_expiration==0}}">
+                <view class="left">据截止还有</view>
+                <view class="right">{{item.count_down}}</view>
+              </view> -->
+              <view class="count-down count-end" wx:if="{{item.vote.poll.is_expiration==1}}">
+                <text>投票已结束</text>
+              </view>
+              <view class="multiple-text">
+                <block wx:if="{{item.vote.poll.multiple == 1}}">
+                  多选
+                  <text>（每人最多可投{{item.vote.poll.maxchoices}}）</text>
+                </block>
+                <block wx:else>
+                  单选
+                  <text>（每人限投1项）</text>
+                </block>
+                <view class="voters-text">共{{item.vote.poll.voters}}人投票</view>
+              </view>
+              <view class="vote-content">
+                <view class="li" wx:for="{{item.vote.polloption}}" wx:for-item="poll" wx:key="polloptionid" wx:for-index="idx">
+                  <view class="icon" wx:if="{{item.answer == item.vote.polloptionid && poll.is_expiration == 1}}">
+                    <icon type="success" color="#11b9ba" size="18"></icon>
+                    <text>正确答案</text>
+                  </view>
+                  <image wx:if="{{poll.icon}}" src="{{poll.icon}}" mode="aspectFit"></image>
+                  <view class="name">{{poll.polloption}}</view>
+                  <block wx:if="{{item.vote.poll.is_vote ||  item.vote.poll.is_expiration==1}}">
+                    <view class="a a_votes">{{poll.votes}}票
+                    </view>
+                    <view class="have-vote" wx:if="{{m1.getIndexOf(item.vote.poll.is_vote, poll.polloptionid)}}">
+                      <image src="https://cdn.e-power.vip/new_resources/image/common/have_vote.png"></image>
+                    </view>
+                  </block>
+                  <view class="a {{m1.getIndexOf(voteLi,poll.polloptionid)?'active':''}}" hover-stop-propagation="true" catchtap="votePut" data-index="{{index}}" data-idx="{{idx}}" data-tid="{{item.tid}}" data-polloptionid="{{poll.polloptionid}}" data-multiple="{{item.vote.poll.multiple}}"
+                    data-maxchoices="{{item.vote.poll.maxchoices}}" wx:else>
+                    <block wx:if="{{m1.getIndexOf(voteLi,poll.polloptionid)}}">
+                      <icon type="success" size="40" color="#11b9ba"></icon>
+                      <view class="icon-bg"></view>
+                    </block>
+                    <block wx:else>投票{{item.vote.poll.is_vote}}</block>
+                  </view>
+                </view>
+              </view>
+              <view class="polls-btn" hover-stop-propagation="true" catchtap="voteTap" wx:if="{{pollId == item.tid}}" data-tid="{{item.tid}}" data-tid="{{item.tid}}" data-index="{{index}}">确定</view>
+            </view>
+            <view wx:if="{{item.special == 1}}" class="spe-content">
+              <view class="mul-content">
+                <view class="multiple-text" wx:if="{{item.vote.poll.reward_type_name}}">
+                  奖赏方式：
+                  <text class="green">{{item.vote.poll.reward_type_name}}</text>
+                </view>
+                <view class="multiple-text">
+                  可投票人：
+                  <text class="green">{{item.vote.poll.member_tag}}</text>
+                  <view class="time">{{item.time}}</view>
+                </view>
+              </view>
+              <view class="mul-time">
+                <view class="price" wx:if="{{item.question_price && item.question_price!='0.00'}}">￥{{item.question_price}}</view>
+              </view>
+            </view>
+            
+            <view class="footer">
+              <view class="circle" wx:if="{{item.circle}}">{{item.circle}}</view>
+              <view class="view-reply">
+                <view class="views">
+                  <image src="https://cdn.e-power.vip/new_resources/image/common/views.png"></image>
+                  {{item.views}}
+                </view>
+                <view class="replies">
+                  <image src="https://cdn.e-power.vip/new_resources/image/common/replies.png"></image>
+                  {{item.replies}}
+                </view>
+                <view class="shares" hover-stop-propagation="true" catchtap="showShareBox">
+                  <image src="https://cdn.e-power.vip/new_resources/image/common/shares.png"></image>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="section-content my-square " wx:if="{{type==100}}">
+
+      <view class="section-title section-ext" bindtap="walletTap">
+        <image src="../../resources/image/user/packet.png"></image>
+        <text class="title">我的钱包</text>
+        <view class="navigator-arrow"></view>
+      </view>
+      <view class="section-title section-ext" bindtap="operationTap">
+        <image src="../../resources/image/user/authe.png"></image>
+        <text class="title">我的认证</text>
+        <view class="navigator-arrow"></view>
+      </view>
+      <!-- <view class="section-title section-ext" bindtap="hotTap">
+        <text class="title">热门围观</text>
+        <view class="navigator-arrow"></view>
+      </view> -->
+    </view>
+
+    <block wx:if="{{type!=100}}">
+      <!-- 加载更多 -->
+      <template is="zan-loadmore" data="{{loading: have_data}}"></template>
+      <!-- 没有更多的数据了 -->
+      <template is="zan-loadmore" data="{{nomore: nomore_data}}"></template>
+    </block>
+  </view>
+
+</view>
+
+
+<view class="mask" wx:if="{{show_opera}}" bindtap="operationTap"></view>
+<view class="opera-list {{show_opera ? 'active':''}}">
+  <view class="li">
+    <view bindtap="toAuthe" data-item="1">车主认证</view>
+    <view bindtap="toAuthe" data-item="2">行业人士认证</view>
+    <view bindtap="toAuthe" data-item="3">媒体认证</view>
+  </view>
+  <view class="ol"></view>
+  <view class="li" bindtap="operationTap">取消</view>
+</view>
+
+<view style="height: 52px"></view>
+<navFar navfar-data="{{navfarData}}"></navFar>
+
+<wxs module="m1">
+  var getIndexOf = function(array, pollid) {
+    var bool = false;
+    for (var i = 0; i < array.length; ++i) {
+      if (array[i] == pollid) {
+        bool = true;
+      }
+    }
+    return bool;
+  }
+  module.exports.getIndexOf = getIndexOf;
+</wxs>

@@ -1,0 +1,41 @@
+<authorization showAuthorization="{{showAuthorization}}"></authorization>
+<view class="nav-far">
+  <view class="list {{navfarData.position == 'index'?'active':''}}" bindtap="swiTap" data-item="index">
+    <image src="{{navfarData.position == 'index'?'https://cdn.e-power.vip/new_resources/image/home.png':'https://cdn.e-power.vip/new_resources/image/homes.png'}}"></image>
+    <text>首页</text>
+  </view>
+  <view class="list nonsense {{navfarData.position == 'nonsense'?'active':''}}" bindtap="swiTap" data-item="nonsense">
+    <image src="{{navfarData.position == 'nonsense'?'https://cdn.e-power.vip/new_resources/image/nonsense.png':'https://cdn.e-power.vip/new_resources/image/nonsenses.png'}}"></image>
+    <text>E派胡言</text>
+  </view>
+  <view class=" list center {{show_add?'center-hover hover-img':''}}" bindtap="showAdd">
+    <image src="https://cdn.e-power.vip/new_resources/image/set.png" class="animated h-image"></image>
+    <view class="animated mask"></view>
+    <view class="sector">
+      <view class="li animated sector1" hover-class="add-hover" bindtap="navTap" data-item="add_article">
+        <!-- <text>发帖</text> -->
+        <image src="https://cdn.e-power.vip/new_resources/image/add/post.png"></image>
+      </view>
+      <view class="li animated sector2" hover-class="add-hover" bindtap="navTap" data-item="add_square">
+        <!-- <text>广场</text>  -->
+        <image src="https://cdn.e-power.vip/new_resources/image/add/square.png"></image>
+      </view>
+      <view class="li animated sector3" hover-class="add-hover" bindtap="navTap" data-item="quest_ask">
+        <!-- <text>问答</text>  -->
+        <image src="https://cdn.e-power.vip/new_resources/image/add/quest.png"></image>
+      </view>
+      <view class="li animated sector4" hover-class="add-hover" bindtap="noneTap">
+        <!-- <text>口碑</text> -->
+        <image src="https://cdn.e-power.vip/new_resources/image/add/praise.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="list {{navfarData.position == 'find'?'active':''}}" bindtap="noneTap">
+    <image src="{{navfarData.position == 'find'?'https://cdn.e-power.vip/new_resources/image/finds.png':'https://cdn.e-power.vip/new_resources/image/finds.png'}}"></image>
+    <text>发现</text>
+  </view>
+  <view class="list {{navfarData.position == 'user'?'active':''}}" bindtap="swiTap" data-item="user">
+    <image src="{{navfarData.position == 'user'?'https://cdn.e-power.vip/new_resources/image/my.png':'https://cdn.e-power.vip/new_resources/image/mys.png'}}"></image>
+    <text>自己</text>
+  </view>
+</view>

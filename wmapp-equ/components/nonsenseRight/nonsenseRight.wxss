@@ -1,0 +1,5 @@
+@import '../moreFunctions/moreFunctions.wxss';
+
+.share-box.active{
+  bottom: 130rpx;
+}

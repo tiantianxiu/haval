@@ -1,0 +1,10 @@
+.bg-grey{
+  background-color: rgb(219, 219, 219);
+}
+.data-list{
+  background-color: #ffffff;
+  width: 100%;
+  margin-bottom: 10rpx;
+}
+.data-list image{
+}

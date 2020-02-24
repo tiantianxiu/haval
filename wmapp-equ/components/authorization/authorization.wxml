@@ -1,0 +1,12 @@
+<view wx:if="{{showAuthorization}}" hover-stop-propagation="true">
+  <view class="mask"></view>
+  <view class="win-box">
+    <view class="win-text">授权登录后才能和哈佛车主们一起玩耍哦~</view>
+    <view class="win-btn-wrap">
+      <button type="default"  catchtap="hideAuthorization">取消</button>
+      <button type="primary" open-type="getUserInfo" bindgetuserinfo="authorization">
+        授权登录
+      </button>
+    </view>
+  </view>
+</view>

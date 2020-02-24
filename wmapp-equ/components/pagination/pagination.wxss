@@ -1,0 +1,35 @@
+@import "../../app.wxss";
+ /*分页*/
+.page-wrap .icon-btn{
+  width: 16rpx;
+  height: 16rpx;
+  vertical-align: middle;
+}
+.page-wrap .page{
+  background-color: #eee;
+  height: 88rpx;
+  position: fixed;
+  bottom:0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.page-item{
+  padding:20rpx;
+  display: inline-block;
+  vertical-align:middle;
+}
+.page-item.current{
+	color:#00c481;
+}
+.page-holder{
+  height: 88rpx;
+}
+.paging-scroll{
+	max-width: 500rpx;
+	width: auto;
+	display: inline-block;
+	margin:0 auto;
+	white-space: nowrap;
+}
+ /*分页*/

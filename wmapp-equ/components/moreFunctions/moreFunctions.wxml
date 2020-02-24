@@ -1,0 +1,98 @@
+<import src="../../zanui/loadmore/index.wxml" />
+<loading hidden="{{loading_hidden}}">
+  {{loading_msg}}
+</loading>
+<authorization showAuthorization="{{showAuthorization}}"></authorization>
+<block wx:if="{{thisModerator && showSet || showSet && isAdmin}}">
+  <view class="to-icon-person to-set" bindtap="toSet">
+    <image src="http://cdn.e-power.vip/resources/image/detail/toset.png" />
+  </view>
+</block>
+<block wx:if="{{showToPost}}">
+  <view class="to-icon-person to-post" bindtap="toPost">
+    <image src="http://cdn.e-power.vip/resources/image/detail/topost1.png"></image>
+  </view>
+</block>
+<block wx:if="{{showToPraise}}">
+  <view class="to-icon-person to-post to-praise" bindtap="toPraise">
+    <image src="http://cdn.e-power.vip/resources/image/detail/topraise1.png"></image>
+  </view>
+</block>
+<!-- animated {{scroll_show ? 'bounceInRight' : 'bounceOutRight'}} -->
+<!-- showShare -->
+<view wx:if="{{showGoHome || showZan}}" class="to-icon-all {{showShare?'animated':''}}  {{scroll_show ? 'bounceInRight' : 'bounceOutRight'}}">
+
+  <block wx:if="{{showGoHome}}">
+    <view class="to-icon to-home" bindtap="toHome">
+      <image src="http://cdn.e-power.vip/resources/image/detail/tohome.png" />
+      <text>首页</text>
+    </view>
+  </block>
+
+  <block wx:if="{{showZan}}">
+    <view class="to-icon to-zan" bindtap="toZan" data-type="1">
+      <image wx:if="{{is_zan == 0 || is_zan == 2}}" src="http://cdn.e-power.vip/resources/image/detail/tozans.png" />
+      <image wx:elif="{{is_zan == 1}}" src="http://cdn.e-power.vip/resources/image/detail/tozaneds.png" class="animated enlarge" />
+      <text>{{zan}}</text>
+    </view>
+  </block>
+
+  <block wx:if="{{showCai}}">
+    <view class="to-icon to-cai" bindtap="toZan" data-type="2">
+      <image wx:if="{{is_zan == 0 || is_zan == 1}}" src="http://cdn.e-power.vip/resources/image/detail/tocais.png" />
+      <image wx:elif="{{is_zan == 2}}" src="http://cdn.e-power.vip/resources/image/detail/tocaieds.png" class="animated enlarge" />
+      <text>{{cai}}</text>
+    </view>
+  </block>
+
+  <block wx:if="{{showReplyBtn}}">
+    <view class="to-icon to-reply" bindtap="toReply">
+      <image src="http://cdn.e-power.vip/resources/image/detail/toreplys.png" />
+      <text>{{totalNum}}</text>
+    </view>
+  </block>
+
+
+  <!-- <block wx:if="{{showToTop}}">
+    <view wx:if="" class="scroll-to-top" bindtap="scrollToTop">
+      <image class="scroll-to-top-img" src="http://cdn.e-power.vip/resources/image/top.png" />
+    </view>
+  </block> -->
+
+  <block wx:if="{{showShare}}">
+    <view class="to-icon {{showReplyBtn?'to-share':'to-reply'}}" bindtap="showShareBox">
+      <image src='http://cdn.e-power.vip/resources/image/detail/toshares.png'></image>
+      <text>分享</text>
+    </view>
+  </block>
+</view>
+
+
+<view class="mask" wx:if="{{showShareBox || showReply}}" bindtap="hideShareBox"></view>
+<view class="share-box {{showShareBox?'active':''}}">
+  <view class="title">请选择分享方式</view>
+  <view class="share-item-wrap">
+    <view class="share-item share-quan animated {{showShareBox?'slideInUp':''}}" bindtap="shareImg">
+      <image src='http://cdn.e-power.vip/resources/image/share_quans.png' mode="widthFix"></image>
+    </view>
+    <button class="share-item share-wx animated {{showShareBox?'slideInUp':''}}" bindtap="hideShareBox" open-type="share">
+      <image src='http://cdn.e-power.vip/resources/image/share_wxs.png' mode="widthFix"></image>
+    </button>
+
+    <view class="share-item share-page animated {{showShareBox?'slideInUp':''}}" bindtap="getClipboard">
+      <image src='http://cdn.e-power.vip/resources/image/share_pages.png' mode="widthFix"></image>
+    </view>
+  </view>
+  <view class="btn-text" bindtap="hideShareBox">取消分享</view>
+</view>
+
+<block wx:if="{{showShareCanvasBox}}">
+  <view class="mask mask-canvas"></view>
+  <view class="canvas-wrap" style="top:{{heightMt}}px">
+    <view class="canvas-box">
+      <canvas canvas-id="shareCanvas{{timeStamp}}" style="width: 275px; height: 490px;"></canvas>
+    </view>
+    <view class="btn" bindtap="saveCanvas">保存图片到本地</view>
+    <view class="btn-close" bindtap="closeCanvas">返回</view>
+  </view>
+</block>

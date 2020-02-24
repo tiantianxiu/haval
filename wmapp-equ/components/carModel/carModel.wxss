@@ -1,0 +1,108 @@
+@import "../../app.wxss";
+.fixed-box{
+  background-color: #fff;
+  position: fixed;
+  left: 25%;
+  top:0;
+  right: 0;
+  bottom:0;
+  z-index: 100;
+}
+.fixed-letter{
+  position: fixed;
+  top:0;
+  bottom:0;
+  right: 0;
+  width: 80rpx;
+  padding:130rpx 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20rpx;
+}
+.fixed-letter .letter{
+  height: 40rpx;
+  color: #767676;
+  line-height: 40rpx;
+  width: 100%;
+}
+.section-box-list .title{
+  height: 20rpx;
+  line-height: 20rpx;
+  color: #676767;
+  /* background-color: #e5e5e5; */
+  padding:0 30rpx;
+  font-size: 24rpx;
+}
+.section-box-list .content-list{
+  border-bottom: 1rpx solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+}
+.section-box-list .content-list .img{
+  width: 110rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+  background: no-repeat center center;
+  background-size: contain;
+}
+.section-box-list .content-list .text{
+  font-size: 28rpx;
+}
+.section-box-list .content-list-col{
+  padding:0 30rpx;
+  color:#676767;
+}
+.section-box-list .content-list-car .img{
+  width: 200rpx;
+  height: 130rpx;
+}
+.section-box-list .content-list-car{
+  padding:30rpx;
+  align-items: flex-start;
+}
+.section-box-list .content-list-car .text{
+  color: #676767;
+}
+.fixedTabScroll{
+  height: 100%;
+}
+ .section-wrap .section-title {
+  padding:20rpx 30rpx;
+  text-align:left;
+  /* border-bottom:3rpx solid #eee; */
+  background-color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display: flex;
+  align-items: center;
+  height: 70rpx;
+  line-height: 0;
+  box-sizing: border-box;
+}
+.section-wrap .section-title .title{
+  color:#676767;
+  font-size: 28rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  padding-left: 20rpx;
+  border-left: 4rpx solid #12baba;
+}
+.goback{
+  display: inline-block;
+  box-sizing: border-box;
+}
+.goback image{
+  width: 26rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  transform:rotate(90deg)
+}
+.section-wrap .section-title .goback .title{
+  border:none;
+  display: inline-block;
+  vertical-align: middle;
+}

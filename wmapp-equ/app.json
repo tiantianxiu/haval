@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/user/user"
+    
+  ],
+  
+  "tabBar": {
+    "color": "#555",
+    "selectedColor": "#6a6d7e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+   
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#b8d8d7",
+    "navigationBarTitleText": "哈佛小程序",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "backgroundColor": "#b8d8d7",
+    "navigationStyle": "custom"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 20000,
+    "uploadFile": 15000,
+    "downloadFile": 15000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获得您当前的位置，以便查询您附近的充电桩"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

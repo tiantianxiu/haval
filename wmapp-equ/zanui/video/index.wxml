@@ -1,0 +1,11 @@
+<template name="index-video">
+
+  <!-- <block wx:if="{{loading}}"> -->
+
+    <video src="{{item.video}}" id="myVideo{{item.pid}}" data-pid="{{item.pid}}" hover-stop-propagation="{{true}}" poster="{{item.video}}" bindended="exitFullScreen" wx:if="{{showCoverId == item.pid}}" direction="0" wx:if="{{showCoverId == item.pid}}"></video>
+                <image src="{{item.image_list[0]}}" mode="aspectFill" data-pid="{{item.pid}}" catchtap="play" hover-stop-propagation="{{true}}" wx:else>
+                  <view class="video-icon" wx:if="{{item.attachment == 1}}" data-pid="{{item.pid}}" catchtap="play" hover-stop-propagation="{{true}}"></view>
+                </image>
+  <!-- </block> -->
+
+</template>

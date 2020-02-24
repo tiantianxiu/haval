@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "replyTail": "../../components/replyTail/replyTail",
+    "authorization": "../../components/authorization/authorization"
+  }
+}

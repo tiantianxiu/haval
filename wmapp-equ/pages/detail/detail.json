@@ -1,0 +1,12 @@
+{
+  "onReachBottomDistance": 10,
+	"navigationBarTitleText": "贴子详情",
+	"usingComponents": {
+    	"moreFunctions": "/components/moreFunctions/moreFunctions",
+    	"authorization": "/components/authorization/authorization",
+      "replyTail": "/components/replyTail/replyTail",
+    	"progressBar": "/components/progressBar/progressBar",
+      "userAuthor": "/components/userAuthor/userAuthor",
+      "navBar": "/components/navBar/navBar"
+  	}
+}

@@ -1,0 +1,11 @@
+<import src="../../zanui/loadmore/index.wxml" />
+<import src="../../zanui/video/index.wxml" />
+
+<view class="bg-grey">
+  <view class="data-list" wx:for="{{offAccData}}" wx:for-item="item" wx:key="off">
+    <web-view src="{{item.content.news_item[0].url}}">
+      <image class="" mode="widthFix" src="{{item.content.news_item[0].thumb_url}}">
+      </image>
+    </web-view>
+  </view>
+</view>

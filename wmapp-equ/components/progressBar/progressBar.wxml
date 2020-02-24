@@ -1,0 +1,8 @@
+
+<block wx:if="{{showProgress}}">
+<view class="mask"></view>
+<view class="progress-bar">
+  <view class="progress-percent">{{progress}}%</view>
+  <progress percent="{{progress}}"/>
+</view>
+</block>

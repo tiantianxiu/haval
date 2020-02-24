@@ -1,0 +1,18 @@
+@import "../../app.wxss";
+ .progress-bar{
+  position: fixed;
+  left: 50%;
+  top:50%;
+  width: 250rpx;
+  z-index: 111;
+  transform: translate(-50%,-50%);
+  border-radius: 4rpx;
+}
+.progress-percent{
+  position: absolute;
+  color: #00c481;
+  font-size: 28rpx;
+  top: -40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}

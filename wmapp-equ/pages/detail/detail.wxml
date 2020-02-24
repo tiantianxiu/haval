@@ -1,0 +1,217 @@
+<!--detail.wxml-->
+<page>
+  <import src="/wxParse/wxParse.wxml" />
+  <import src="../../zanui/loadmore/index.wxml" />
+  <navBar navbar-data="{{navbarData}}" bindshowShareBox="showShareBox"></navBar>
+
+  <view class="active-class-tag" style="top:{{heightMt}}px" wx:if="{{thread_data.class_typeid && thread_data.class_tag && is_share!=1}}">
+    <image src="{{thread_data.class_tag}}" data-typeid="{{thread_data.class_typeid}}" data-subject="{{thread_data.class_name}}" data-url="{{thread_data.class_url}}" bindtap="activeTap"></image>
+  </view>
+
+  <view class="container-nopadding">
+    <loading hidden="{{loading_hidden}}">
+      {{loading_msg}}
+    </loading>
+    
+    <view>
+      <view style="height: {{heightMt + 12}}px" wx:if="{{!cover}}"></view>
+      <view class="page__bd">
+        <view class="section-wrap section-detail-wrap">
+          <view class="detail-cover" wx:if="{{cover}}">
+            <image src="{{cover}}" mode="aspectFill"></image>
+          </view>
+          <view class="thread_content-cell {{!cover ? 'no-cover' : ''}}" id="thread-content-cell">
+            <view class="big" wx:if="{{cover}}">
+              <userAuthor id="userAuthor" is_vip="{{thread_data.is_ident_icon}}" is_carvip='{{thread_data.is_carvip}}' uid="{{thread_data.authorid}}" big_avatar="{{thread_data.author_avatar}}" author="{{thread_data.author}}" level="{{thread_data.level}}" extcredits2="{{thread_data.extcredits2}}" is_follow="{{thread_data.is_follow}}" follow="true" bindisShowAuthorization="isShowAuthorization"></userAuthor>
+            </view>
+
+            <view wx-if="{{is_admin==1 && is_share==1}}" class="section-title section-title-admin">
+              <view class="detail-admin">
+                <picker class="input-picker" range="{{getTops}}" bindchange="threadTopChange" value="{{thread_data.displayorder}}" mode="selector">
+                  <view>置顶</view>
+                </picker>
+              </view>
+              <view class="detail-admin">
+                <picker class="input-picker" range="{{digestLevel}}" bindchange="setDigest" value="{{thread_data.digest}}" mode="selector">
+                  <view>精华</view>
+                </picker>
+              </view>
+              <view class="detail-admin">
+                <picker class="input-picker" range="{{cleanCacheSel}}" bindchange="cleanCache" mode="selector">
+                  <view>缓存</view>
+                </picker>
+              </view>
+              <view class="detail-admin" bindtap="postViews">设置</view>
+              <view class="detail-admin" data-tid="{{tid}}" bindtap="postDel">删除</view>
+            </view>
+            <view class="view-input {{editViews?'active':''}}" wx-if="{{is_admin==1 && is_share==1}}">
+              <input type="number" placeholder-style="color:  #c5c5c5" placeholder="设置（{{thread_data.views}})" bindinput="inputViews" data-pid="" focus="{{editViews?'focus':''}}" bindinput="inputViews"></input>
+              <view class="btn" bindtap="submitViews">确定</view>
+            </view>
+            <view class="article-content-title box-wrap">
+              <view class="item">{{thread_data.subject}}</view>
+              <view class="footers">
+                <view class="view-reply">
+                  <view class="views">
+                    <image src="https://cdn.e-power.vip/new_resources/image/common/views_green.png"></image>
+                    {{thread_data.views}}
+                  </view>
+                  <view class="replies">
+                    <image src="https://cdn.e-power.vip/new_resources/image/common/reply_green.png"></image>
+                    {{thread_data.replies}}
+                  </view>
+                  <view class="time">{{thread_data.time}}</view>
+                </view>
+              </view>
+            </view>
+
+            <view class="big" wx:if="{{!cover}}">
+
+              <userAuthor id="userAuthor" is_vip="{{thread_data.is_ident_icon}}" is_carvip='{{thread_data.is_carvip}}' uid="{{thread_data.authorid}}" big_avatar="{{thread_data.author_avatar}}" author="{{thread_data.author}}" level="{{thread_data.level}}" extcredits2="{{thread_data.extcredits2}}"
+                is_follow="{{thread_data.is_follow}}" follow="true" bindisShowAuthorization="isShowAuthorization" no_cover="true"></userAuthor>
+            </view>
+
+
+            <!-- 投票 -->
+            <view class="poll" wx:if="{{poll}}">
+              <view class="title">投票: ( 最多可选 {{poll.maxchoices}} 项 ), 共有 {{poll.voters}} 人参与投票</view>
+              <block wx:if="{{poll.is_vote || poll.remainde <= 0}}">
+                <view class="is-vote" wx:for="{{polloption}}" wx:for-item="item" wx:key="{{index}}">
+                  <view class="text">{{item.polloption}}</view>
+                  <view class="progress">
+                    <progress percent="{{item.vote_rate_str}}" color="#09BB07" activeColor="#00c481" active="true" stroke-width="4" />
+                    <text>{{item.votes}}票 {{item.vote_rate}}</text>
+                  </view>
+                </view>
+              </block>
+              <block wx:elif="{{poll.multiple == 1}}">
+                <view wx:for="{{polloption}}" wx:for-item="item" wx:key="{{index}}" class="polloption" bindtap="checkboxTap" data-optionid="{{item.polloptionid}}" data-index="{{index}}">
+                  <view class="check-box {{item.checked?'checked':''}}">
+                    <image src="http://cdn.e-power.vip/resources/image/checked.png" wx:if="{{item.checked}}" />
+                  </view>
+                  <text decode="{{true}}">{{item.polloption}} &nbsp;&nbsp;{{item.vote_rate}}({{item.votes}})</text>
+                </view>
+              </block>
+              <block wx:else>
+                <view wx:for="{{polloption}}" wx:for-item="item" wx:key="{{index}}" class="polloption polloption-radio" bindtap="radioTap" data-optionid="{{item.polloptionid}}" data-index="{{index}}">
+                  <view class="check-box">
+                    <view wx:if="{{item.checked}}" class="radioed"></view>
+                  </view>
+                  <text decode="{{true}}">{{item.polloption}} &nbsp;&nbsp;{{item.vote_rate}}({{item.votes}})</text>
+                </view>
+              </block>
+              <block wx:if="{{poll.is_vote}}">
+                <view class="poll-btn disabled">共有{{poll.voters}}人投票（你已投票）</view>
+              </block>
+              <block wx:elif="{{poll.remainde <= 0}}">
+                <view class="poll-btn disabled">共有{{poll.voters}}人投票（已过期）</view>
+              </block>
+              <block wx:else>
+                <view class="poll-btn" bindtap="pollBtn">投票</view>
+              </block>
+            </view>
+            <view class="article-text article-detail-text">
+              <template is="wxParse" data="{{wxParseData:thread_data.message.nodes}}" />
+            </view>
+            <moreFunctions showSharetail="{{true}}" shareType="{{idtype}}" tid="{{tid}}" bindgetClipboard="getClipboard" showCopy="{{true}}"></moreFunctions>
+            <!-- thread_ad -->
+            <view wx:if="{{thread_ad.pic}}" class="ad_img">
+              <view class="square-line" style="width: 100%;" wx:if="{{show_ad}}"></view>
+              <image src="{{thread_ad.pic}}" mode="widthFix" bindload="loadAd">
+                <text>广告</text>
+              </image>
+            </view>
+            <view class="square-line" style="width: 100%;"></view>
+            <view class="section-wrap section-detail-wrap" id="reply-title">
+              <block wx:if="{{selected.length != 0}}">
+                <view class="detail-title light">
+                  精选评论
+                </view>
+                <view class="section-body">
+                  <block wx:for="{{selected}}" wx:for-index="index" wx:for-item="item" wx:key="articleId">
+                    <view class="article {{item.is_add_post?'animated pulse':''}}">
+                      <userAuthor is_vip="{{item.is_ident_icon}}" is_carvip='{{item.is_carvip}}' uid="{{item.authorid}}" avatar="{{item.author_avatar}}" author="{{item.author}}" level="{{item.level}}" extcredits2="{{item.extcredits2}}" zan="{{item.zan}}" cai="{{item.cai}}" cate="selected"
+                        is_zan="{{item.is_zan}}" zan_operate="true" pid="{{item.pid}}" tid="{{tid}}"></userAuthor>
+                      <view class="square-content">
+                        <rich-text class="article-text rich-text " nodes="{{item.message}}" bindtap="replyComment" data-pid="{{item.pid}}" data-focus="{{true}}" data-uppid="{{item.uppid}}"></rich-text>
+                        <view class="image-lists" wx:if="{{item.image_list.length != 0}}">
+                          <block wx:for="{{item.image_list}}" wx:for-item="img" wx:key="{{index}}">
+                            <image src="{{img}}" bindtap="previewImage" data-current="{{img}}" data-list="{{item.image_list}}" class="lists"></image>
+                          </block>
+                        </view>
+                        <view class="post-reply-list" wx:if="{{item.reply.length > 0}}" bindtap="replyComment" data-pid="{{item.pid}}" data-focus="{{false}}" data-uppid="{{item.uppid}}">
+                          <view wx:for="{{item.reply}}" wx:for-item="reply" wx:key="{{index}}">
+                            <text>{{reply.author}}：</text> {{reply.message}}
+                          </view>
+                          <text>查看全部回复{{item.reply_num}}条</text>
+                        </view>
+                        <view class="footers">
+                          <view class="view-reply">
+                            <view class="time">{{item.time}}</view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </block>
+              <block wx:if="{{articleList.length > 0}}">
+                <view class="detail-title light" id="articleWrap">
+                  最新评论
+                </view>
+                <view class="section-body">
+                  <block wx:for="{{articleList}}" wx:for-index="index" wx:for-item="item" wx:key="articleId">
+                    <view class="article {{item.is_add_post?'animated pulse':''}}">
+                      <userAuthor is_vip="{{item.is_ident_icon}}" is_carvip='{{item.is_carvip}}'  uid="{{item.authorid}}" avatar="{{item.author_avatar}}" author="{{item.author}}" level="{{item.level}}" extcredits2="{{item.extcredits2}}" cate="articleList" position="{{position}}" zan="{{item.zan}}" cai="{{item.cai}}" bindclickZan="clickZan" index="{{index}}"
+                        is_zan="{{item.is_zan}}" zan_operate="true" pid="{{item.pid}}" tid="{{tid}}"></userAuthor>
+                      <view class="square-content">
+                        <rich-text class="article-text rich-text " nodes="{{item.message}}" bindtap="replyComment" data-pid="{{item.pid}}" data-focus="{{true}}" data-uppid="{{item.uppid}}"></rich-text>
+                        <view class="image-lists" wx:if="{{item.image_list.length != 0}}">
+                          <block wx:for="{{item.image_list}}" wx:for-item="img" wx:key="{{index}}">
+                            <image src="{{img}}" bindtap="previewImage" data-current="{{img}}" data-list="{{item.image_list}}" class="lists"></image>
+                          </block>
+                        </view>
+                        <view class="post-reply-list" wx:if="{{item.reply.length > 0}}" bindtap="replyComment" data-pid="{{item.pid}}" data-focus="{{false}}" data-uppid="{{item.uppid}}">
+                          <view wx:for="{{item.reply}}" wx:for-item="reply" wx:key="{{index}}" wx:if="{{item.reply_num != 0}}">
+                            <text>{{reply.author}}：</text> {{reply.message}}
+                          </view>
+                          <text>查看全部回复{{item.reply_num}}条</text>
+                        </view>
+                        <view class="footers">
+                          <view class="view-reply">
+                            <view class="time">{{item.time}}</view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </block>
+              <block wx:else>
+                <image src="https://cdn.e-power.vip/new_resources/image/common/no_reply.png" class="no-reply"></image>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 授权登录框 -->
+    <authorization showAuthorization="{{showAuthorization}}"></authorization>
+
+    <replyTail id="replyTail" bindaddPost="addPost" focus="{{focus}}" message="{{message}}" zan="{{thread_data.zan}}" cai="{{thread_data.cai}}" replies="{{thread_data.replies}}" tid="{{tid}}" idtype="{{idtype}}" isShowReplyForm="{{true}}"
+      showCai="{{showCai}}" is_zan="{{thread_data.is_zan}}" bindscrollToBottom="scrollToBottom" hideSmiley="{{thread_data.fid == 130 ? true : false}}" to_author="{{to_author}}"></replyTail>
+
+    <block wx:if="{{articleList.length > 0}}">
+      <!-- 加载更多 -->
+      <template is="zan-loadmore" data="{{ loading: have_data}}"></template>
+      <!-- 没有更多的数据了 -->
+      <template is="zan-loadmore" data="{{ nomore: nomore_data}}"></template>
+    </block>
+  </view>
+
+  <moreFunctions id="moreFunctions" showShare="{{true}}" zan="{{thread_data.zan}}" cai="{{thread_data.cai}}" is_zan="{{is_zan}}" messagePid="{{messagePid}}" showSet="true" bindtoSet="toSet" tid="{{tid}}" bindfaZan="myZan" isAdmin="{{is_admin}}" totalNum="{{thread_data.replies}}"
+    bindgetClipboard="getClipboard" showCopy="{{true}}" addPosts="{{addPosts}}" scrollTop="{{scrollTop}}" author="{{thread_data.author}}" avatar="{{thread_data.avatar || thread_data.author_avatar}}" time="{{thread_data.time}}"
+    replies="{{thread_data.replies}}" views="{{thread_data.views}}" zan="{{thread_data.zan}}" vip="{{thread_data.is_auth_car_icon == 1 || thread_data.is_ident_icon == 1}}" level="{{thread_data.level}}" extcredits2="{{thread_data.extcredits2}}" hidden="0"></moreFunctions>
+
+</page>

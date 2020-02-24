@@ -1,0 +1,12 @@
+<block wx:if="{{totalPage > 1}}">
+	<view class="page-wrap">
+		<view class="page-holder"></view>
+		<view class="page" style="bottom:{{bottom}}rpx">
+		
+			<scroll-view scroll-x class="paging-scroll" >
+				<view class="page-item {{idx == currentPage ? 'current' : ''}}" wx:for="{{totalPage}}" wx:key='{{idx}}' wx:for-index="idx" data-idx="{{idx}}" bindtap="setCurrentPage">{{idx + 1}}</view>
+			</scroll-view>
+		
+		</view>
+	</view>
+</block>

@@ -1,0 +1,34 @@
+<authorization showAuthorization="{{showAuthorization}}"></authorization>
+<view class="nav-wrap {{navbarData.transparent?'transparent':''}}" style='height: {{heightMt + 20 * 2}}px;'>
+  <!-- // 导航栏 中间的标题 -->
+  <view class="index-header" wx:if="{{navbarData.isIndex}}">
+    <view class="notice" bindtap="toMessage">
+      <image src="https://cdn.e-power.vip/new_resources/image/common/notice-icon.png"></image>
+      <text wx:if="{{navbarData.msgStatus}}">{{navbarData.msgStatus}}</text>
+    </view>
+    <view class="search" bindtap="toSearch">
+      <image src="https://cdn.e-power.vip/new_resources/image/common/search-icon.png"></image>
+      <text>搜索</text>
+    </view>
+  </view>
+  <view class='nav-title' wx:if="{{!navbarData.isIndex}}" style='line-height: {{heightMt*2 + 40}}px;'>{{navbarData.title}}</view>
+  <view style='display: flex; justify-content: space-around; flex-direction: column'>
+    <!-- // 导航栏 左上角的返回按钮 和home按钮 // 其中wx:if='{{navbarData.showCapsule}}' 是控制左上角按钮的显示隐藏，首页不显示 -->
+    <view class='nav-capsule' wx:if='{{navbarData.iShare == 1}}' style="height: {{heightMt + 20 * 2}}px;">
+      <image bindtap="showShareBox" class="header-share" wx:if="{{!share && !navbarData.hideBack}}" src='https://cdn.e-power.vip/new_resources/image/common/share_grey.png'></image>
+    </view>
+
+    <view class='nav-capsule' wx:if='{{navbarData.showCapsule}}' style="height: {{heightMt + 20 * 2}}px;">
+      <block wx:if="{{navbarData.transparent}}">
+        <image bindtap="backtap" class="header-back" wx:if="{{!share && !navbarData.hideBack}}" src='https://cdn.e-power.vip/new_resources/image/common/left.png'></image>
+      </block>
+      <block wx:else>
+        <image bindtap="backtap" class="header-back" wx:if="{{!share && !navbarData.hideBack}}" src='https://cdn.e-power.vip/new_resources/image/common/left_grey.png'></image>
+      </block>
+      <block wx:if="{{navbarData.shareImg}}">
+      <image bindtap="showShareBox" class="header-back" wx:if="{{navbarData.transparent}}" src='https://cdn.e-power.vip/new_resources/image/common/share_white.png'></image>
+      <image bindtap="showShareBox" class="header-back" wx:else src='../../resources/image/common/share_grey.png'></image>
+      </block>
+    </view>
+  </view>
+</view>

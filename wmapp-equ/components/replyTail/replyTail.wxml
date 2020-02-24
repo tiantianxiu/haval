@@ -1,0 +1,138 @@
+<import src="../../zanui/loadmore/index.wxml" />
+<progressBar showProgress="{{showProgress}}" progress="{{progress}}"></progressBar>
+<loading hidden="{{loading_hidden}}">
+  {{loading_msg}}
+</loading>
+<authorization showAuthorization="{{showAuthorization}}"></authorization>
+<block wx:if="{{isAdmin == 1}}">
+  <view class="to-icon-person to-set" bindtap="toSet">
+    <image src="http://cdn.e-power.vip/resources/image/detail/toset.png" />
+  </view>
+</block>
+
+<view wx:if="{{!showreplyForm}}" class="page-tail">
+  <view class="resp-input-cell">
+    <!-- <input wx:if="{{!isShowReplyForm}}" class="resp-input" type="text" bindinput="inputMessage" data-pid='0' value="{{message}}" placeholder="回复{{to_author}}：" confirm-type="send" bindconfirm="submitMessage" confirm-hold="true" focus="{{focus}}" type='text'
+    /> -->
+    <textarea wx:if="{{!isShowReplyForm}}" placeholder="回复{{to_author}}：" class="resp-input" style="{{isAndroid == 1 ? 'padding: 12rpx 0;' : ''}}" data-pid='0' value="{{message}}" maxlength="-1" focus="{{focus}}" fixed="true" adjust-position="{{false}}" bindfocus="bindfocus" bindblur="bindblur" auto-height="true"  bindinput="inputMessage"  bindconfirm="submitMessage">
+    </textarea>
+    <view bindtap="showreplyFormFun" wx:else class="resp-input">我也来说 ~</view>
+  </view>
+  <block wx:if="{{message != null && message != undefined && message != '' || !showReplies && !showZan &&!showCai}}">
+  </block>
+  <block wx:else>
+    <block wx:if="{{!isreplyPost}}">
+      <view class="resp-btn" bindtap="toReply">
+        <image class="ib-width" src="https://cdn.e-power.vip/new_resources/image/common/replies.png"></image>
+        <text class="size24">{{replies}}</text>
+      </view>
+      <view class="resp-btn" bindtap="toZan" data-type="1">
+        <image class="ib-width" src="https://cdn.e-power.vip/new_resources/image/common/zan_icons.png" wx:if="{{is_zan==1}}"></image>
+        <image class="ib-width" src="https://cdn.e-power.vip/new_resources/image/common/zan_grey.png" wx:else></image>
+        <text class="size24">{{zan}}</text>
+      </view>
+      <view class="resp-btn" bindtap="toZan" data-type="2" style="margin-right: 0;">
+        <image class="ib-width" src="https://cdn.e-power.vip/new_resources/image/common/cai_icons.png" wx:if="{{is_zan==2}}"></image>
+        <image class="ib-width" src="https://cdn.e-power.vip/new_resources/image/common/cai_grey.png" wx:else></image>
+        <text class="size24">{{cai}}</text>
+      </view>
+    </block>
+  </block>
+</view>
+
+<view wx:else>
+  <view class="mask-transparent" bindtouchstart="hideReplyForm"></view>
+  <view class="replyForm-fixed" style='bottom:{{height}}px;'>
+    <view class="input-wrap">
+      <view class='input-content {{imageList.length > 0 || bigCode.length > 0 ? "input-hasimg ":" "}}'>
+        <block wx:if="{{imageList.length > 0 || bigCode.length > 0 }}">
+          <view class="uploader-files">
+            <view class="image-cell" wx:for="{{imageList}}" wx:for-item="item" wx:key="{{index}}">
+              <view catchtap="delImg" class='del-img-btn' data-index="{{index}}" data-code="{{item.code}}"></view>
+              <image class="uploader-img" src="{{item.url}}" data-src="{{item.url}}"></image>
+            </view>
+
+            <view class="image-cell" wx:for="{{bigCode}}" wx:for-item="item" wx:key="{{index}}">
+              <view catchtap="delSmil" class='del-img-btn' data-index="{{index}}" data-code="{{item.code}}"></view>
+              <image class="uploader-img" src="{{item.url}}" data-src="{{item.url}}"></image>
+            </view>
+          </view>
+        </block>
+
+        <!-- <input type="text" bindinput="inputMessage" data-pid='0' value="{{message}}" placeholder="{{to_author ?     '回复 ' + to_author : '优质评论将会被优先展示'}}" confirm-type="send" bindconfirm="submitMessage" confirm-hold="true" focus="{{focus}}" placeholder-style="color:#c5c5c5"
+          adjust-position="{{adjustPosition}}" bindfocus="bindfocus" bindblur="bindblur" /> -->
+        <textarea placeholder="{{to_author ? '回复 ' + to_author : '优质评论将会被优先展示'}}" placeholder-style="color:#c5c5c5" style="{{isAndroid == 1 ? 'padding: 12rpx 0;' : ''}}" value="{{message}}" maxlength="-1" focus="{{focus}}" fixed="true" adjust-position="{{false}}" bindconfirm="{{!hideSmiley && !is_praise ? '' : 'submitMessage'}}"
+          bindfocus="bindfocus" bindblur="bindblur" bindinput="inputMessage" auto-height="true">
+        </textarea>
+      </view>
+      <block wx:if="{{!hideSmiley && !is_praise}}">
+        <view class="upload-item resp-btn" bindtap="chooseImage">
+          <image class="ib-width" src="https://cdn.e-power.vip/new_resources/image/common/pic_icon.png" />
+        </view>
+        <view class="upload-item resp-btn" bindtap="chooseEmoji">
+          <image class="ib-width" src="https://cdn.e-power.vip/new_resources/image/common/smily_icon.png" />
+        </view>
+        <view class="text" bindtap="submitMessage">发送</view>
+      </block>
+    </view>
+
+    <!-- 按住有动图 -->
+    <view class="emoji-show-gif" wx:if="{{is_show_gif}}" style="left:{{gifLeft}}rpx; bottom: {{gifBottom}}rpx">
+      <image src="{{emojiGif}}" />
+    </view>
+    <view class="emoji-box" wx:if="{{showEmoji}}">
+      <scroll-view class="emoji-scroll-view_x" scroll-with-animation="{{true}}" scroll-left="{{emojiScrollLeft}}" scroll-x style="width: 100%">
+        <view class="emoji-swiper-wrap" wx:for="{{emojiListGroup}}" wx:for-index="idx" wx:key="{{index}}" wx:for-item="emojiGroup">
+          <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="#8b8b8b" indicator-color="#d7d7d7">
+            <swiper-item wx:for="{{emojiGroup.list}}" wx:key="{{index}}" wx:for-item="emojiList" data-groupidx="{{idx}}" data-idx="{{index}}" bindtouchstart="emojitouchstart" bindtouchend="emojitouchend" bindlongtap="showGifFather">
+              <view class="emoji-swiper-item">
+                <view wx:for="{{emojiList}}" wx:key="{{index}}" wx:for-item="emoji" bindtap="chooseEmojiItem" data-code="{{emoji.code}}" data-url="{{emoji.url}}" data-index="{{index}}" bindlongtap="showGif" class="emoji-item {{emojiGroup.typeid == 1 ? 'emoji-item-sm':''}}"
+                  bindtouchstart="touchStart" data-typeid="{{emojiGroup.typeid}}" bindtouchend="touchEnd">
+                  <image src="{{emoji.url}}" />
+                </view>
+              </view>
+            </swiper-item>
+          </swiper>
+        </view>
+
+      </scroll-view>
+      <view class="emoji-tab-wrap">
+        <view class="emoji-tab">
+          <view class="emoji-tab-item {{emojiScrollLeft == index*screenW ? 'current' : ''}}" wx:for="{{emojiListGroup}}" wx:key="{{index}}" wx:for-item="emojiGroup" bindtap="chanegEmojiTab" data-idx="{{index}}">
+            <image src="{{emojiGroup.icon}}" />
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="mask" wx:if="{{showShareBox}}" bindtap="showShareBox"></view>
+<view class="share-box {{showShareBox?'active':''}}">
+  <view class="title">请选择分享方式</view>
+  <view class="share-item-wrap">
+    <view class="share-item share-quan animated {{showShareBox?'slideInUp':''}}" bindtap="shareImg">
+      <image src='http://cdn.e-power.vip/resources/image/share_quans.png' mode="widthFix"></image>
+    </view>
+    <button class="share-item share-wx animated {{showShareBox?'slideInUp':''}}" bindtap="showShareBox" open-type="share">
+      <image src='http://cdn.e-power.vip/resources/image/share_wxs.png' mode="widthFix"></image>
+    </button>
+
+    <view class="share-item share-page animated {{showShareBox?'slideInUp':''}}" bindtap="getClipboard">
+      <image src='http://cdn.e-power.vip/resources/image/share_pages.png' mode="widthFix"></image>
+    </view>
+  </view>
+  <view class="btn-text" bindtap="showShareBox">取消分享</view>
+</view>
+
+<block wx:if="{{showShareCanvasBox}}">
+  <view class="mask mask-canvas"></view>
+  <view class="canvas-wrap" style="top:{{heightMt}}px">
+    <view class="canvas-box">
+      <canvas canvas-id="shareCanvas{{timeStamp}}" style="width: 275px; height: 490px; margin-top:56px;"></canvas>
+    </view>
+    <view class="btn" bindtap="saveCanvas">保存图片到本地</view>
+    <view class="btn-close" bindtap="closeCanvas">返回</view>
+  </view>
+</block>

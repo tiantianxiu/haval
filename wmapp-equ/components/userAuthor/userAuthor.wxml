@@ -1,0 +1,69 @@
+<authorization showAuthorization="{{showAuthorization}}"></authorization>
+<view class="user-info">
+  <view class="avatar big-avatar {{no_cover?'no-cover':''}}" wx:if="{{big_avatar}}" catchtap="toUserDetail" hover-stop-propagation="true" data-uid="{{uid}}">
+    <image mode="aspectFill" class="img" src="{{big_avatar}}"></image>
+    <view class="user-v" wx:if="{{is_vip}}"></view>
+  </view>
+  <view class="avatar" wx:if="{{avatar}}" catchtap="toUserDetail" hover-stop-propagation="true" data-uid="{{uid}}">
+    <image mode="aspectFill" class="img img{{is_vip}}" src="{{avatar}}"></image>
+    <view class="user-v" wx:if="{{is_vip}}"></view>
+  </view>
+  <view class="user-detail">
+    <view class="author">{{author}}</view>
+    <view class="dia-message" wx:if="{{diaMessage}}">
+      {{diaMessage}}
+    </view>
+    <view class="level" wx:elif="{{level}}">
+      <view class="level-car">
+        <image src="https://cdn.e-power.vip/new_resources/image/common/car_vip.png" wx:if="{{is_carvip == 1}}"></image>
+        <text>{{level}}</text>
+      </view>
+      <view class="level-electric">
+        <image src="https://cdn.e-power.vip/new_resources/image/common/lightning.png"></image>
+        <text>{{extcredits2}}</text>
+      </view>
+      <view wx:if="{{is_top}}">
+      <text>置顶</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{price && price!='0.00'}}" class="price">￥{{price}}</view>
+  <!-- <view wx:if="{{price =='0.00' && hidden == 2}}" class="tag"><text></text>问答</view>
+   <view wx:if="{{price =='0.00' && hidden == 200}}" class="tag"><text></text>投票</view> -->
+  <view class="time" wx:if="{{time && !price}}">{{time}}</view>
+  <view class="time" wx:if="{{friend}}">
+    <image src="https://cdn.e-power.vip/new_resources/image/common/friend_icon.png"></image>
+  </view>
+  <view wx:if="{{questTime}}" class="ques-time">{{questTime}}</view>
+  <view class="zan-cai" wx:if="{{zan_operate}}">
+    <view catchtap="{{isPostZan?'toZan':'clickZan'}}" data-cate="{{cate}}" data-index="{{index}}" hover-stop-propagation="true" data-type="1">
+      <image src="https://cdn.e-power.vip/new_resources/image/common/zan_icons.png" wx:if="{{is_zan==1}}">
+      </image>
+      <image src="https://cdn.e-power.vip/new_resources/image/common/zan_grey.png" wx:else>
+      </image>
+      <text class="size22">{{zan}}</text>
+    </view>
+    <view catchtap="{{isPostZan?'toZan':'clickZan'}}" data-cate="{{cate}}" data-index="{{index}}" hover-stop-propagation="true" data-type="2">
+      <image src="https://cdn.e-power.vip/new_resources/image/common/cai_icons.png" wx:if="{{is_zan==2}}">
+      </image>
+      <image src="https://cdn.e-power.vip/new_resources/image/common/cai_grey.png" wx:else>
+      </image>
+      <text class="size22">{{cai}}</text>
+    </view>
+  </view>
+
+  <view class="add-friend" bindtap="followBtn" data-uid="{{uid}}" data-index="{{index}}" wx:if="{{follow && is_follow!=3}}">
+    <block wx:if="{{is_follow == 0}}">
+      <image src="https://cdn.e-power.vip/new_resources/image/common/add_friend.png" />关注
+    </block>
+    <block wx:elif="{{is_follow == 1}}">
+      已关注
+    </block>
+    <block wx:elif="{{is_follow == 2}}">
+      互相关注
+    </block>
+  </view>
+  <view class="hidden-text" hover-stop-propagation='ture' catchtap="operationTap" data-uid="{{uid}}" data-index="{{index}}" wx:if="{{is_self !=1 && third_point}}">
+    <image src="https://cdn.e-power.vip/new_resources/image/common/third_point.png"></image>
+  </view>
+</view>

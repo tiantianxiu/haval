@@ -1,0 +1,12 @@
+{
+  "onReachBottomDistance": 50,
+  "backgroundColor": "#f3f3f3",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "authorization": "../../components/authorization/authorization",
+    "shareModal": "../../components/shareModal/index",
+    "userAuthor": "../../components/userAuthor/userAuthor",
+    "navBar": "../../components/navBar/navBar",
+    "navFar": "../../components/navFar/navFar"
+  }
+}
