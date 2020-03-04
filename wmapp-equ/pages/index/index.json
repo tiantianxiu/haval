@@ -4,7 +4,6 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "authorization": "../../components/authorization/authorization",
-    "shareModal": "../../components/shareModal/index",
     "userAuthor": "../../components/userAuthor/userAuthor",
     "navBar": "../../components/navBar/navBar",
     "navFar": "../../components/navFar/navFar"

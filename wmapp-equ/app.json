@@ -2,8 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/detail/detail",
-    "pages/user/user"
-    
+    "pages/user/user",
+    "pages/offiAc/offiAc",
+    "pages/luckDraw/luckDraw"
   ],
   
   "tabBar": {
@@ -25,7 +26,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#b8d8d7",
-    "navigationBarTitleText": "哈佛小程序",
+    "navigationBarTitleText": "哈弗小程序",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": false,
     "backgroundColor": "#b8d8d7",

@@ -1,0 +1,15 @@
+<view class="lock-bg">
+  <view class="luck-content">
+    <view class="li {{luckNum==0?'active':''}}">70%概率</view>
+    <view class="li {{luckNum==1?'active':''}}">5%概率</view>
+    <view class="li {{luckNum==2?'active':''}}">3%概率</view>
+    <view class="li {{luckNum==7?'active':''}}">2%概率</view>
+
+    <view class="li button" bindtap="draw">立即抽奖</view>
+
+    <view class="li {{luckNum==3?'active':''}}">6%概率</view>
+    <view class="li {{luckNum==6?'active':''}}">3%概率</view>
+    <view class="li {{luckNum==5?'active':''}}">10%概率</view>
+    <view class="li {{luckNum==4?'active':''}}">1%概率</view>
+  </view>
+</view>

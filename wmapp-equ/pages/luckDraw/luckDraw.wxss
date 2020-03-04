@@ -1,0 +1,37 @@
+.lock-bg {
+  height: 100%;
+  background: #fb341f;
+  padding-top: 220rpx;
+}
+
+.luck-content {
+}
+
+.luck-content:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+
+.luck-content .li {
+  float: left;
+  width: 31%;
+  height: 180rpx;
+  line-height: 180rpx;
+  margin-left: 6rpx;
+  margin-bottom: 10rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  text-align: center;
+  border: #fff 4rpx solid;
+}
+.luck-content .li.active{
+  background: #fc3522;
+  color: #fff;
+}
+.luck-content .li.button{
+  background: #ffe814;
+  color: #6d0002;
+  font-weight: 600;
+  font-size: 40rpx;
+}

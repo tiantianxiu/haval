@@ -94,7 +94,7 @@ App({
                 resolve(res)
                 wx.showModal({
                   title: '警告',
-                  content: '授权登录后才能和哈佛新能源车主们一起玩耍哦~ 错过授权页面的处理方法：删除小程序->重新搜索进入->点击授权按钮',
+                  content: '授权登录后才能和哈弗新能源车主们一起玩耍哦~ 错过授权页面的处理方法：删除小程序->重新搜索进入->点击授权按钮',
                 })
               }
             })
@@ -515,7 +515,7 @@ App({
     });
   },
   globalData: {
-    shareTitle: '哈佛小程序',
+    shareTitle: '哈弗小程序',
     base_url: 'http://www.e-power.vip/',
     // svr_url: 'https://testapi.e-power.vip/v1/',
     svr_url: 'https://api.e-power.vip/',
@@ -536,7 +536,9 @@ App({
     msg_status: 0, //消息通知数
     userVersion: '', //开发版、测试版、正式版
     backShow: false,
-    tmplIds: ['-179EGl_tkzLlQZtUlqOxKUXFMExe-XXrWoUu783wpg', 'xUk7Ze6lwHLh2V4SFs6iCRszKATMAaXvyd2Cm09w5P8'] //订阅消息模板
+    tmplIds: ['-179EGl_tkzLlQZtUlqOxKUXFMExe-XXrWoUu783wpg', 'xUk7Ze6lwHLh2V4SFs6iCRszKATMAaXvyd2Cm09w5P8'], //订阅消息模板
+    web_url: '',
+    amapKey: 'a26ac081b94e90d9d9e6443ebe399085' //高德地图key
   },
   getToken: {
     num: 0

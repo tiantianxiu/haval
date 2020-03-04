@@ -1,0 +1,4 @@
+<view>
+  <web-view src="{{web_url}}" bindload="bindload" binderror="binderror">
+  </web-view>
+</view>
