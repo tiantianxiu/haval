@@ -122,7 +122,6 @@ Page({
     wx.navigateTo({
       url: `../offiAc/offiAc`
     })
-
   },
 
   uncompileStr(code) {
